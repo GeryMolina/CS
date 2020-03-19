@@ -5,7 +5,7 @@ import rootReducer from './Redux/reducers/Reducer'
 import './App.css'
 //Components
 import CounterCreator from './components/CounterCreator';
-import Counter from './components/Counter'
+import {Counter} from './components/Counter'
 import FilterItems from './components/FilterItems'
 import Total from './components/Total'
 

@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import './style.css'
 
 //actions 
-import { addItem } from '../Redux/actions/CounterCreator'
+import { addItem } from '../Redux/actions/actions'
 
 const CounterCreator = () => {
 
@@ -19,6 +19,7 @@ const CounterCreator = () => {
     const handleClick = e => {
         e.preventDefault();
         dispatch(addItem({ id: uuidv4(), item }));
+        
     }
     return (
         <div className='addList'>

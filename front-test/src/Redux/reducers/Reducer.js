@@ -9,7 +9,7 @@ const initialState = {
 function rootReducer(state = initialState, { type, payload }) {
     switch (type) {
         case ADD_ITEM:
-            return { items: { ...state.items, payload } }
+            return { ...state, items: [ ...state.items, payload ] }
         
         case PRINT_LIST:
             return '';
