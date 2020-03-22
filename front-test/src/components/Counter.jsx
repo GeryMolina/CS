@@ -1,5 +1,6 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
+import { increment, decrement } from '../Redux/actions/actions'
 import './style.css'
 
 import Image from '../assets/image.png'
@@ -10,26 +11,35 @@ import Menos from '../assets/menos.png'
 const Counter = () => {
 
     const items = useSelector(state => state.items);
-    const dispatch = useDispatch();
-    
 
+
+    const dispatch = useDispatch();
+
+    const handleAdd = id => {
+        dispatch(increment(id));
+    };
+    const handleMinus = id => {
+        dispatch(decrement(id));
+    };
+   
     return (
         <div className='container'>
 
-           {items.map(i => (
-            <div className='counter' key={i.id}>
-                <img src={Image} alt='' />
-                <div className='infoCounter'>
-                    <h4>{i.item}</h4>
-                    <section>
-                        <button><img src={Mas} alt='' /></button>
-                        <input type="text" />
-                        <button><img src={Menos} alt='' /></button>
-                    </section>
+            {items.map(i => (
+                <div className='counter' key={i.id}>
+                    <img src={Image} alt='' />
+                    <div className='infoCounter'>
+                        <h4>{i.item}</h4>
+                        <section>
+                            <button onClick={handleMinus.bind(null, i.id)}><img src={Menos} alt='' /></button>
+                            <p>{i.count}</p>
+                            <button onClick={handleAdd.bind(null, i.id)}><img src={Mas} alt='' /></button>
+                            
+                        </section>
+                    </div>
+                    <button className='fas fa fa-trash'></button>
                 </div>
-                <button className='fas fa fa-trash'></button>
-            </div>
-        ))}
+            ))}
         </div>
     )
 }

@@ -14,11 +14,10 @@ const CounterCreator = () => {
 
     const handleChange = (e) => {
         setItem(e.target.value)
-
     }
     const handleClick = e => {
         e.preventDefault();
-        dispatch(addItem({ id: uuidv4(), item }));
+        dispatch(addItem({ id: uuidv4(), item, count:0 }));
         
     }
     return (
