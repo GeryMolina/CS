@@ -18,6 +18,7 @@ const CounterCreator = () => {
     const handleClick = e => {
         e.preventDefault();
         dispatch(addItem({ id: uuidv4(), item, count:0 }));
+        setItem('');
         
     }
     return (

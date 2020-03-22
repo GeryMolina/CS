@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { increment, decrement } from '../Redux/actions/actions'
+import { increment, decrement, deleteItem } from '../Redux/actions/actions'
 import './style.css'
 
 import Image from '../assets/image.png'
@@ -21,7 +21,10 @@ const Counter = () => {
     const handleMinus = id => {
         dispatch(decrement(id));
     };
-   
+    const handleRemove = id => {
+        dispatch(deleteItem(id));
+      }
+
     return (
         <div className='container'>
 
@@ -34,10 +37,10 @@ const Counter = () => {
                             <button onClick={handleMinus.bind(null, i.id)}><img src={Menos} alt='' /></button>
                             <p>{i.count}</p>
                             <button onClick={handleAdd.bind(null, i.id)}><img src={Mas} alt='' /></button>
-                            
+
                         </section>
                     </div>
-                    <button className='fas fa fa-trash'></button>
+                    <button className='fas fa fa-trash' onClick={handleRemove.bind(null, i.id)}></button>
                 </div>
             ))}
         </div>
