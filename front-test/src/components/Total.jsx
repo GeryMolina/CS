@@ -1,13 +1,16 @@
 import React from 'react';
-import './style.css'
+import './style.css';
+import { useSelector } from 'react-redux';
 
-const total = () => {
+const Total = () => {
+    const total = useSelector(state => state.total);
+
     return (
-        <div className ='total'>
+        <div className='total'>
             <h4>Total Items</h4>
-            <h5>Nº</h5>
+            <h5>{total}</h5>
         </div>
     )
 }
 
-export default total;
+export default Total;
