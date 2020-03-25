@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-// import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import './style.css'
-import axios from 'axios';
 
 //actions 
 import { addItem } from '../Redux/actions/actions'
@@ -17,23 +16,10 @@ const CounterCreator = () => {
         setTitle(e.target.value)
     }
     const handleClick = e => {
-        const addItem1 = { title, count: 0 };
+        const addItem1 = { id:uuidv4(), title, count: 0 };
         e.preventDefault();
         dispatch(addItem(addItem1));
         setTitle('');
-
-        //envio al servidor
-        axios.post('/api/v1/counter',
-            {
-                title: addItem1.title,
-                count: addItem1.count
-            }
-        ).then(function (response) {
-            console.log(response);
-        })
-            .catch(function (error) {
-                console.log(error);
-            });
     }
     return (
         <div className='addList'>

@@ -1,5 +1,5 @@
 
-import { ADD_ITEM, DELETE_ITEM, INCREMENT, DECREMENT, ORDER_AZ, ORDER_MTM } from '../actions/actionsType';
+import { ADD_ITEM, DELETE_ITEM, INCREMENT, DECREMENT, ORDER_TITLE, ORDER_COUNT } from '../actions/actionsType';
 
 const initialState = {
     items: [],
@@ -43,10 +43,42 @@ function rootReducer(state = initialState, { type, payload }) {
             }
             return { ...state, items: [...state.items], del, total: total };
 
-        case ORDER_AZ:
-            return { ...state }
-        case ORDER_MTM:
-            return { ...state }
+        case ORDER_TITLE:
+            const order = state.items;
+            function compare(a, b) {
+
+                const titleA = a.title.toUpperCase();
+                const titleB = b.title.toUpperCase();
+
+                let comparison = 0;
+                if (titleA > titleB) {
+                    comparison = 1;
+                } else if (titleA < titleB) {
+                    comparison = -1;
+                }
+                return comparison;
+            }
+            order.sort(compare);
+            return { ...state, items: [...state.items], payload };
+
+        case ORDER_COUNT:
+            const sorting = state.items;
+            function compar(a, b) {
+                // Use toUpperCase() to ignore character casing
+                const countA = a.count;
+                const countB = b.count;
+
+                let comparison = 0;
+                if (countA > countB) {
+                    comparison = -1;
+                } else if (countA < countB) {
+                    comparison = 1;
+                }
+                return comparison;
+            }
+
+            sorting.sort(compar);
+            return { ...state, items: [...state.items], payload}
         default:
             return { ...state }
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from './Redux/reducers/Reducer'
@@ -11,9 +11,7 @@ import Total from './components/Total'
 
 
 function App() {
-  useEffect(()=>{
-    fetch('/api/v1/counter')
-  })
+  
 
   const store = createStore(rootReducer);
   return (

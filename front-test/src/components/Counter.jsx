@@ -1,5 +1,4 @@
-import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { increment, decrement, deleteItem } from '../Redux/actions/actions'
 import './style.css'
@@ -11,19 +10,8 @@ import Menos from '../assets/menos.png'
 
 const Counter = () => {
 
-    //const items = useSelector(state => state.items);
-    const [items, setItems] = useState([]);
-    // const items = axios.get('/api/v1/counters').then((response)=>response.data);
+    const items = useSelector(state => state.items);
 
-    useEffect(()=>{
-        const fetchData = async () => {
-            const res = await fetch('/api/v1/counters');
-            res.json().then(res=> setItems(res));
-        }
-        fetchData();
-
-    }, []);
-    console.log(items)
     const dispatch = useDispatch();
 
     const handleAdd = id => {
