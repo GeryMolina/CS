@@ -1,24 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from './Redux/reducers/Reducer'
 import './App.css'
 //Components
 import CounterCreator from './components/CounterCreator';
-import {Counter} from './components/Counter'
+import { Counter } from './components/Counter'
 import FilterItems from './components/FilterItems'
 import Total from './components/Total'
 
 
 function App() {
+  useEffect(()=>{
+    fetch('/api/v1/counter')
+  })
+
   const store = createStore(rootReducer);
   return (
     <Provider store={store}>
       <div className="App">
         <CounterCreator />
-        <FilterItems/>
-        <Counter/>
-        <Total/>
+        <FilterItems />
+        <Counter />
+        <Total />
       </div>
     </Provider>
   );

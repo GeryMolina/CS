@@ -1,8 +1,8 @@
 import { ADD_ITEM, DELETE_ITEM, INCREMENT, DECREMENT } from './actionsType';
 
-export const addItem = item => ({
+export const addItem = title => ({
     type: ADD_ITEM,
-    payload: item
+    payload: title
 });
 
 

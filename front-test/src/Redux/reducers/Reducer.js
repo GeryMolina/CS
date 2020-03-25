@@ -1,5 +1,5 @@
 
-import { ADD_ITEM, DELETE_ITEM, INCREMENT, DECREMENT } from '../actions/actionsType';
+import { ADD_ITEM, DELETE_ITEM, INCREMENT, DECREMENT, ORDER_AZ, ORDER_MTM } from '../actions/actionsType';
 
 const initialState = {
     items: [],
@@ -9,10 +9,9 @@ const initialState = {
 
 function rootReducer(state = initialState, { type, payload }) {
     switch (type) {
-
         case ADD_ITEM:
+            console.log(payload)
             return { ...state, items: [...state.items, payload] }
-
         case DELETE_ITEM:
             const deleteItem = state.items.filter(i => i.id !== payload);
             const countDelete = state.items.find(i => i.id === payload);
@@ -35,15 +34,19 @@ function rootReducer(state = initialState, { type, payload }) {
             } else {
                 del = 0
             }
-            const totalMinus = state.total;
+            let totalMinus = state.total;
             let total;
             if (totalMinus >= 1) {
                 total = totalMinus -= 1
             } else {
                 total = 0
             }
-
             return { ...state, items: [...state.items], del, total: total };
+
+        case ORDER_AZ:
+            return { ...state }
+        case ORDER_MTM:
+            return { ...state }
         default:
             return { ...state }
 
