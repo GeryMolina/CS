@@ -24,7 +24,7 @@ const CounterCreator = () => {
     return (
         <div className='addList'>
             <input
-                type='text'
+                type='Search'
                 name='title'
                 value={title}
                 onChange={handleChange}

@@ -1,5 +1,5 @@
 
-import { ADD_ITEM, DELETE_ITEM, INCREMENT, DECREMENT, ORDER_TITLE, ORDER_COUNT } from '../actions/actionsType';
+import { ADD_ITEM, DELETE_ITEM, INCREMENT, DECREMENT, ORDER_TITLE, ORDER_COUNT, SEARCH_ITEM, LESS_COUNT } from '../actions/actionsType';
 
 const initialState = {
     items: [],
@@ -46,10 +46,8 @@ function rootReducer(state = initialState, { type, payload }) {
         case ORDER_TITLE:
             const order = state.items;
             function compare(a, b) {
-
                 const titleA = a.title.toUpperCase();
                 const titleB = b.title.toUpperCase();
-
                 let comparison = 0;
                 if (titleA > titleB) {
                     comparison = 1;
@@ -64,10 +62,8 @@ function rootReducer(state = initialState, { type, payload }) {
         case ORDER_COUNT:
             const sorting = state.items;
             function compar(a, b) {
-                // Use toUpperCase() to ignore character casing
                 const countA = a.count;
                 const countB = b.count;
-
                 let comparison = 0;
                 if (countA > countB) {
                     comparison = -1;
@@ -76,9 +72,28 @@ function rootReducer(state = initialState, { type, payload }) {
                 }
                 return comparison;
             }
-
             sorting.sort(compar);
-            return { ...state, items: [...state.items], payload}
+            return { ...state, items: [...state.items], payload }
+
+        case SEARCH_ITEM:
+            const findItem = state.items.filter((i) => i.title.toLowerCase().includes(payload.toLowerCase()))
+            const notification = alert('Producto no encontrado')
+            if (findItem.length === 0) {
+
+                return { ...state, items: [...state.items], notification }
+            }
+            return { ...state, items: findItem }
+
+        case LESS_COUNT:
+            const findLess = state.items.filter((i) => i.count.includes(payload))
+            
+            if (findLess.length === 0) {
+
+                return { ...state, items: [...state.items] }
+            }
+            return { ...state, items: findLess }
+
+
         default:
             return { ...state }
 
@@ -86,6 +101,5 @@ function rootReducer(state = initialState, { type, payload }) {
     }
 
 }
-
 
 export default rootReducer;

@@ -5,4 +5,5 @@ export const DECREMENT = 'DECREMENT';
 export const ORDER_TITLE = 'ORDER_TITLE';
 export const ORDER_COUNT = 'ORDER_COUNT';
 export const SEARCH_ITEM = 'SEARCH_ITEM';
-
+export const LESS_COUNT = 'LESS_COUNT';
+export const GREATER_COUNT = 'GREATER_COUNT';
