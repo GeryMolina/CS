@@ -1,11 +1,10 @@
 
-import { ADD_ITEM, DELETE_ITEM, INCREMENT, DECREMENT, ORDER_TITLE, ORDER_COUNT, SEARCH_ITEM, LESS_COUNT } from '../actions/actionsType';
+import { ADD_ITEM, DELETE_ITEM, INCREMENT, DECREMENT, ORDER_TITLE, ORDER_COUNT, SEARCH_ITEM, LESS_COUNT, GREATER_COUNT } from '../actions/actionsType';
 
 const initialState = {
     items: [],
     total: 0
 }
-
 
 function rootReducer(state = initialState, { type, payload }) {
     switch (type) {
@@ -77,22 +76,30 @@ function rootReducer(state = initialState, { type, payload }) {
 
         case SEARCH_ITEM:
             const findItem = state.items.filter((i) => i.title.toLowerCase().includes(payload.toLowerCase()))
-            const notification = alert('Producto no encontrado')
+            const notification = 'Producto no encontrado'
             if (findItem.length === 0) {
-
-                return { ...state, items: [...state.items], notification }
+                alert(notification)
+                return { ...state, items: [...state.items] }
             }
             return { ...state, items: findItem }
 
         case LESS_COUNT:
-            const findLess = state.items.filter((i) => i.count.includes(payload))
-            
-            if (findLess.length === 0) {
-
+            const lessCount = state.items.filter(i => i.count <= payload);
+            const message = 'El parámetro ingresado no coincide'
+            if (lessCount.length === 0) {
+                alert(message)
                 return { ...state, items: [...state.items] }
             }
-            return { ...state, items: findLess }
+            return { ...state, items: lessCount }
 
+        case GREATER_COUNT:
+            const greaterCount = state.items.filter(i => i.count > payload);
+            const atention = 'El parámetro ingresado no coincide'
+            if (greaterCount.length === 0) {
+                alert(atention)
+                return { ...state, items: [...state.items] }
+            }
+            return { ...state, items: greaterCount }
 
         default:
             return { ...state }
