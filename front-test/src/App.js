@@ -1,13 +1,14 @@
 import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import rootReducer from './Redux/reducers/Reducer'
-import './App.css'
+import rootReducer from './Redux/reducers/Reducer';
+import './App.css';
 //Components
 import CounterCreator from './components/CounterCreator';
-import { Counter } from './components/Counter'
-import FilterItems from './components/FilterItems'
-import Total from './components/Total'
+import { Counter } from './components/Counter';
+import FilterItems from './view/FilterItems';
+import Total from './components/Total';
+
 
 
 function App() {

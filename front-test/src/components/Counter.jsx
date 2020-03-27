@@ -2,11 +2,8 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { increment, decrement, deleteItem } from '../Redux/actions/actions'
 import './style.css'
-
-import Image from '../assets/image.png'
-import Mas from '../assets/mas.png'
-import Menos from '../assets/menos.png'
-
+import Image from '../assets/image.jpg';
+import Trash from '../assets/trashs.png'
 
 const Counter = () => {
 
@@ -29,17 +26,17 @@ const Counter = () => {
 
             {items.map(i => (
                 <div className='counter' key={i.id}>
-                    <img src={Image} alt='' />
+                    <img className='image' src={Image} alt='' />
                     <div className='infoCounter'>
                         <h4>{i.title}</h4>
                         <section>
-                            <button onClick={handleMinus.bind(null, i.id)}><img src={Menos} alt='' /></button>
-                            <p>{i.count}</p>
-                            <button onClick={handleAdd.bind(null, i.id)}><img src={Mas} alt='' /></button>
+                            <button onClick={handleMinus.bind(null, i.id)}>-</button>
+                                <p>{i.count}</p>
+                            <button onClick={handleAdd.bind(null, i.id)}>+</button>
 
                         </section>
                     </div>
-                    <button className='fas fa fa-trash' onClick={handleRemove.bind(null, i.id)}></button>
+                    <button onClick={handleRemove.bind(null, i.id)}><img className='trash' src={Trash} alt=''/></button>
                 </div>
             ))}
         </div>
